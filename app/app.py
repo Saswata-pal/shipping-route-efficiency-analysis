@@ -2030,35 +2030,48 @@ with tab5:
 # -------------------------
 st.markdown("---")
 
-st.markdown("### 📌 Project Information & Credits")
+st.markdown("<h3 style='color: var(--text-dark-green);'>📌 Project Information & Credits</h3>", unsafe_allow_html=True)
 
 c1, c2, c3 = st.columns(3)
 
 with c1:
     st.markdown(
         """
-**👨‍💻 Developed by:** Mohit Gupta
+<div style='color: #1b7d3d;'>
+
+**👨‍💻 Developed by:** Saswata Pal
   
-**🎯 Role:** Data Analyst Intern
-        """
+**🎯 Role:** Machine Learning Intern
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 with c2:
     st.markdown(
         """
+<div style='color: #1b7d3d;'>
+
 **📊 Project:** Factory-to-Customer Shipping Route Efficiency Analysis for Nassau Candy Distributor
   
 **🏢 Organization:** Unified Mentor Pvt. Ltd.
-        """
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 with c3:
     st.markdown(
         """
-**👨‍🏫 Mentor:** Saiprasad Kagne
-  
+<div style='color: #1b7d3d;'>
+
 **📅 Year:** 2026
-        """
+
+</div>
+        """,
+        unsafe_allow_html=True
     )
 
 st.markdown(
