@@ -32,9 +32,7 @@ df_main["Ship Date"] = pd.to_datetime(
 )
 
 
-# -------------------------
 # TEXT / ROUTE FIX
-# -------------------------
 def clean_route_text(series: pd.Series) -> pd.Series:
     return (
         series.astype(str)
