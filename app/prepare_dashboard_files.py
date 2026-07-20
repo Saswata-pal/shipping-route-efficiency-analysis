@@ -57,9 +57,7 @@ for col in text_cols:
         df_main[col] = df_main[col].astype(str).str.strip()
 
 
-# -------------------------
 # SAVE BACK PERMANENTLY
-# -------------------------
 df_main.to_csv(main_path, index=False)
 
 
