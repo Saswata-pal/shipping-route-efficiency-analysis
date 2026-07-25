@@ -1,4 +1,9 @@
-/* app/assets/nassau_shippingrouteanalysis.css */
+/* =========================================================
+   NASSAU CANDY DASHBOARD — MODERN PROFESSIONAL THEME
+   Clean slate/navy base, blue + teal accents.
+   Same selectors/classes as the original stylesheet, so no
+   changes are required in app.py to use this file.
+========================================================= */
 
 :root {
     --bg-1: #eef2f7;
@@ -60,9 +65,45 @@ header[data-testid="stHeader"] {
     box-shadow: none !important;
 }
 
-[data-testid="stToolbar"] { display: none !important; }
+/* NOTE: we intentionally do NOT hide [data-testid="stToolbar"] entirely.
+   The control that reopens a collapsed sidebar lives inside that same
+   toolbar container in this Streamlit build — hiding the whole toolbar
+   removes it, which is why the sidebar could never be reopened once
+   closed. We hide only the specific buttons we don't want instead. */
+[data-testid="stToolbar"] {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stAppDeployButton"],
+[data-testid="stMainMenu"],
+header[data-testid="stHeader"] button[aria-label="Deploy"],
+header[data-testid="stHeader"] button[title="Deploy"],
+header[data-testid="stHeader"] button[aria-label="Main menu"],
+header[data-testid="stHeader"] button[title="Main menu"] {
+    display: none !important;
+}
+
 #MainMenu { visibility: hidden; }
 footer { visibility: hidden; }
+
+/* Always-on guarantee that the "reopen sidebar" control is visible and
+   clickable, on every screen size, regardless of which testid this
+   Streamlit version happens to use for it. */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="stSidebarCollapseControl"],
+[data-testid="stSidebarCollapseButton"],
+[data-testid="collapsedControl"],
+button[data-testid="stBaseButton-headerNoPadding"],
+header[data-testid="stHeader"] button[aria-label*="sidebar" i],
+header[data-testid="stHeader"] button[title*="sidebar" i] {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 1000000 !important;
+    position: relative;
+}
 
 .stApp {
     background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
