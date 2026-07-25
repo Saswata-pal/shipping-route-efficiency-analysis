@@ -232,4 +232,8 @@ This project is intended for educational, research, and portfolio purposes.
 
 ## 👨‍💻 Author
 
-Developed as a data analytics and business intelligence project demonstrating logistics optimization, geospatial analytics, and interactive dashboard development.
+**Saswata Pal**
+
+*AI & Machine Learning Developer*
+
+**GitHub**: https://github.com/Saswata-pal
