@@ -105,6 +105,31 @@ header[data-testid="stHeader"] button[title*="sidebar" i] {
     position: relative;
 }
 
+/* Icon color: amber/orange so the arrow stays visible whether it sits on
+   the dark sidebar or the light page background (white was disappearing
+   into both, depending on state). */
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="stSidebarCollapseControl"] svg,
+[data-testid="stSidebarCollapseButton"] svg,
+[data-testid="collapsedControl"] svg,
+button[data-testid="stBaseButton-headerNoPadding"] svg,
+header[data-testid="stHeader"] button[aria-label*="sidebar" i] svg,
+header[data-testid="stHeader"] button[title*="sidebar" i] svg,
+section[data-testid="stSidebar"] button svg,
+section[data-testid="stSidebar"] [data-testid="stExpandSidebarButton"] svg,
+section[data-testid="stSidebar"] [data-testid="stCollapseSidebarButton"] svg {
+    color: #f59e0b !important;
+    fill: #f59e0b !important;
+    stroke: #f59e0b !important;
+}
+
+section[data-testid="stSidebar"] button:hover svg,
+[data-testid="stSidebarCollapsedControl"]:hover svg {
+    color: #fbbf24 !important;
+    fill: #fbbf24 !important;
+    stroke: #fbbf24 !important;
+}
+
 .stApp {
     background: linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
 }
