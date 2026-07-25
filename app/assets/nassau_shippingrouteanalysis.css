@@ -88,43 +88,53 @@ header[data-testid="stHeader"] button[title="Main menu"] {
 footer { visibility: hidden; }
 
 /* Always-on guarantee that the "reopen sidebar" control is visible and
-   clickable, on every screen size, regardless of which testid this
-   Streamlit version happens to use for it. */
-[data-testid="stSidebarCollapsedControl"],
-[data-testid="stSidebarCollapseControl"],
-[data-testid="stSidebarCollapseButton"],
-[data-testid="collapsedControl"],
-button[data-testid="stBaseButton-headerNoPadding"],
-header[data-testid="stHeader"] button[aria-label*="sidebar" i],
-header[data-testid="stHeader"] button[title*="sidebar" i] {
+   has real contrast, on every screen size — using wildcard testid
+   matching (*="ollaps") instead of an exact guess, since the precise
+   testid varies across Streamlit builds. Also styles whatever button(s)
+   remain in the header now that Deploy/menu are hidden, as a safety net. */
+[data-testid*="ollaps" i],
+button[data-testid*="idebar" i],
+header[data-testid="stHeader"] button {
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     z-index: 1000000 !important;
     position: relative;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: var(--sidebar-2) !important;
+    border: 1px solid rgba(255,255,255,0.20) !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-md) !important;
+    padding: 6px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+}
+
+[data-testid*="ollaps" i]:hover,
+button[data-testid*="idebar" i]:hover,
+header[data-testid="stHeader"] button:hover {
+    background-color: var(--sidebar-3) !important;
 }
 
 /* Icon color: amber/orange so the arrow stays visible whether it sits on
-   the dark sidebar or the light page background (white was disappearing
-   into both, depending on state). */
-[data-testid="stSidebarCollapsedControl"] svg,
-[data-testid="stSidebarCollapseControl"] svg,
-[data-testid="stSidebarCollapseButton"] svg,
-[data-testid="collapsedControl"] svg,
-button[data-testid="stBaseButton-headerNoPadding"] svg,
-header[data-testid="stHeader"] button[aria-label*="sidebar" i] svg,
-header[data-testid="stHeader"] button[title*="sidebar" i] svg,
-section[data-testid="stSidebar"] button svg,
-section[data-testid="stSidebar"] [data-testid="stExpandSidebarButton"] svg,
-section[data-testid="stSidebar"] [data-testid="stCollapseSidebarButton"] svg {
+   the dark sidebar or the light page background. Covers SVG icons
+   (fill/stroke) and font-glyph icons (color) alike, on every descendant. */
+[data-testid*="ollaps" i],
+[data-testid*="ollaps" i] *,
+button[data-testid*="idebar" i],
+button[data-testid*="idebar" i] *,
+header[data-testid="stHeader"] button,
+header[data-testid="stHeader"] button * {
     color: #f59e0b !important;
     fill: #f59e0b !important;
     stroke: #f59e0b !important;
 }
 
-section[data-testid="stSidebar"] button:hover svg,
-[data-testid="stSidebarCollapsedControl"]:hover svg {
+[data-testid*="ollaps" i]:hover *,
+button[data-testid*="idebar" i]:hover *,
+header[data-testid="stHeader"] button:hover * {
     color: #fbbf24 !important;
     fill: #fbbf24 !important;
     stroke: #fbbf24 !important;
@@ -1063,10 +1073,8 @@ div[data-testid="stExpander"] .stSlider [data-testid="stTickBar"] {
         display: none !important;
     }
 
-    [data-testid="stSidebarCollapsedControl"],
-    [data-testid="stSidebarCollapseControl"],
-    [data-testid="stSidebarCollapseButton"],
-    [data-testid="collapsedControl"] {
+    [data-testid*="ollaps" i],
+    button[data-testid*="idebar" i] {
         display: flex !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -1080,8 +1088,8 @@ div[data-testid="stExpander"] .stSlider [data-testid="stTickBar"] {
         min-height: 42px !important;
         align-items: center !important;
         justify-content: center !important;
-        background: var(--surface) !important;
-        border: 1px solid var(--border-strong) !important;
+        background-color: var(--sidebar-2) !important;
+        border: 1px solid rgba(255,255,255,0.20) !important;
         border-radius: 14px !important;
         box-shadow: var(--shadow-md) !important;
         padding: 0 !important;
@@ -1089,13 +1097,11 @@ div[data-testid="stExpander"] .stSlider [data-testid="stTickBar"] {
         pointer-events: auto !important;
     }
 
-    [data-testid="stSidebarCollapsedControl"] svg,
-    [data-testid="stSidebarCollapseControl"] svg,
-    [data-testid="stSidebarCollapseButton"] svg,
-    [data-testid="collapsedControl"] svg {
-        color: var(--text-primary) !important;
-        fill: var(--text-primary) !important;
-        stroke: var(--text-primary) !important;
+    [data-testid*="ollaps" i] *,
+    button[data-testid*="idebar" i] * {
+        color: #f59e0b !important;
+        fill: #f59e0b !important;
+        stroke: #f59e0b !important;
         width: 22px !important;
         height: 22px !important;
     }
