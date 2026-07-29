@@ -23,7 +23,7 @@ st.set_page_config(
 # FILE PATHS
 # -------------------------
 nassau_logo_path = Path("app/assets/images/nassau_candy.png")
-mentor_logo_path = Path("app/assets/images/delivery.png")
+mentor_logo_path = Path("app/assets/images/warehouse.png")
 css_file_path = Path("app/assets/nassau_shippingrouteanalysis.css")
 
 # -------------------------
@@ -401,7 +401,7 @@ st.session_state["final_lead_time_threshold"] = threshold_value
 # -------------------------
 with st.sidebar:
     if mentor_logo_path.exists():
-        st.image(str(mentor_logo_path), width=100)
+        st.image(str(mentor_logo_path), use_container_width=True)
     else:
         st.warning("Unified Mentor logo not found.")
 
