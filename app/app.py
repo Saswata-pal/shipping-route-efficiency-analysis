@@ -23,7 +23,7 @@ st.set_page_config(
 # FILE PATHS
 # -------------------------
 nassau_logo_path = Path("app/assets/images/nassau_candy.png")
-mentor_logo_path = Path("app/assets/images/map-route.png")
+mentor_logo_path = Path("app/assets/images/delivery.png")
 css_file_path = Path("app/assets/nassau_shippingrouteanalysis.css")
 
 # -------------------------
