@@ -1257,7 +1257,7 @@ with tab1:
             st.plotly_chart(fig_top_routes, use_container_width=True, config=PLOTLY_CONFIG)
 
         with chart_right:
-            st.markdown("**⚠️ Bottom 10 Least Efficient Routes**")
+            st.markdown('<div class="chart-block-title">⚠️ Bottom 10 Least Efficient Routes</div>', unsafe_allow_html=True)
             fig_bottom_routes = px.bar(
                 bottom_10_routes.sort_values("Efficiency_Score", ascending=False),
                 x="Efficiency_Score",
