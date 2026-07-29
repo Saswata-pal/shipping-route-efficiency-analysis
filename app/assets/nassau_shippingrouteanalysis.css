@@ -597,7 +597,12 @@ section[data-testid="stSidebar"] .stSlider [data-testid="stTickBar"] {
     font-weight: 800;
     margin-bottom: 6px;
 }
-
+.chart-block-title {
+    color: var(--text-primary) !important;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
 .section-status {
     font-size: 11px;
     font-weight: 700;

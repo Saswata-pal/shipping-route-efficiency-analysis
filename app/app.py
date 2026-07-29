@@ -1234,7 +1234,7 @@ with tab1:
         chart_left, chart_right = st.columns(2)
 
         with chart_left:
-            st.markdown("**🏆 Top 10 Efficient Routes**")
+            st.markdown('<div class="chart-block-title">🏆 Top 10 Efficient Routes</div>', unsafe_allow_html=True)
             fig_top_routes = px.bar(
                 top_10_routes.sort_values("Efficiency_Score", ascending=True),
                 x="Efficiency_Score",
