@@ -401,7 +401,7 @@ st.session_state["final_lead_time_threshold"] = threshold_value
 # -------------------------
 with st.sidebar:
     if mentor_logo_path.exists():
-        st.image(str(mentor_logo_path), use_container_width=True)
+        st.image(str(mentor_logo_path), width=90)
     else:
         st.warning("Unified Mentor logo not found.")
 
