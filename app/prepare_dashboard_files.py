@@ -100,7 +100,7 @@ st.set_page_config(
 # FILE PATHS
 # -------------------------
 nassau_logo_path = Path("assets/images/nassau_candy.png")
-mentor_logo_path = Path("assets/images/warehouse.png")
+mentor_logo_path = Path("assets/images/shape.png")
 
 # -------------------------
 # LOAD FINAL DATASETS
