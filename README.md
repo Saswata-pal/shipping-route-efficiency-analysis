@@ -1,14 +1,24 @@
 # 🚚 Factory-to-Customer Shipping Route Efficiency Analysis
 
-An end-to-end logistics analytics project that transforms raw shipment records into actionable route-level intelligence. This project analyzes factory-to-customer shipping performance, identifies logistics bottlenecks, compares shipping modes, and provides an interactive Streamlit dashboard for decision-makers.
+An end-to-end logistics analytics project that transforms raw shipment records into actionable route-level intelligence for Nassau Candy, a specialty confections distributor. The project cleans and engineers features from raw shipment data, benchmarks route and shipping-mode efficiency, and surfaces the results in an interactive Streamlit dashboard for decision-makers.
+
+Built as part of a Data Analyst Internship with **Unified Mentor Pvt. Ltd.**
+
+---
+
+## 🔗 Live Demo
+
+**Dashboard:** [Add your Streamlit Cloud URL here]
+
+**Repository:** https://github.com/Saswata-pal/shipping-route-efficiency-analysis
 
 ---
 
 ## 📌 Project Overview
 
-Efficient logistics is essential for improving customer satisfaction, reducing operational costs, and scaling nationwide distribution networks. This project focuses on evaluating shipping route efficiency by analyzing shipment lead times between manufacturing factories and customer locations.
+Efficient logistics is essential for improving customer satisfaction, reducing operational costs, and scaling nationwide distribution networks. This project evaluates shipping route efficiency by analyzing shipment lead times between Nassau Candy's manufacturing factories and customer locations across the US.
 
-Using data analytics, geospatial visualization, and business intelligence techniques, the project helps identify high-performing shipping routes, detect geographical bottlenecks, and compare shipping methods across different regions.
+The pipeline moves from raw order-level data through cleaning, feature engineering, and route-level aggregation, into a normalized **Route Efficiency Score**, and finally into a filterable, multi-tab dashboard covering route benchmarking, geographic bottlenecks, ship-mode comparison, route drill-down, and monthly trends.
 
 ---
 
@@ -16,199 +26,181 @@ Using data analytics, geospatial visualization, and business intelligence techni
 
 - Analyze shipping lead times across factory-to-customer routes
 - Identify the fastest and slowest shipping routes
-- Detect regional logistics bottlenecks
+- Detect regional and state-level logistics bottlenecks
 - Compare shipping performance across different shipping modes
-- Measure operational efficiency using logistics KPIs
-- Build an interactive dashboard for business users
+- Measure operational efficiency using a normalized Route Efficiency Score
+- Build an interactive dashboard for business users, with both desktop and mobile-friendly filtering
 
 ---
 
 ## 📊 Dataset
 
-The dataset contains information about:
+Source: `data/Nassau Candy Distributor.csv`
 
-- Orders
-- Shipment dates
-- Customer locations
-- Product information
-- Factory mappings
-- Sales
-- Cost
-- Gross Profit
-- Units Sold
-- Shipping Mode
+The dataset contains order-level shipment records including:
 
-Additional lookup tables map products to factories and factory geographic coordinates.
+- Order ID, Order Date, Ship Date
+- Factory (origin) and Customer State/Province, Region (destination)
+- Ship Mode
+- Derived: Shipping Lead Time, Route (Factory → State / Factory → Region), Delay Status
+
+Cleaned and feature-engineered versions are exported to `data/processed/` for the dashboard, and to `data/powerbi_ready/` for use outside Streamlit (e.g. Power BI).
 
 ---
 
 ## ⚙️ Project Workflow
 
 ```
-Raw Dataset
+Raw Dataset (Nassau Candy Distributor.csv)
       │
       ▼
-Data Cleaning
+Data Cleaning & Validation
       │
       ▼
 Feature Engineering
       │
       ▼
-Route Definition
+Route Definition & Aggregation
       │
       ▼
-KPI Calculation
+Efficiency Benchmarking (Route Efficiency Score)
       │
       ▼
-Exploratory Data Analysis
+Geographic Bottleneck Analysis
       │
       ▼
-Geospatial Analytics
+Ship Mode Performance Analysis
+      │
+      ▼
+Export for Streamlit + Power BI
       │
       ▼
 Interactive Streamlit Dashboard
       │
       ▼
-Business Insights & Recommendations
+Key Insights & Recommendations
 ```
+
+The full pipeline is documented step-by-step in `notebooks/01` through `notebooks/09`.
 
 ---
 
 ## 📈 Key Performance Indicators
 
-- Shipping Lead Time
-- Average Lead Time
-- Route Volume
-- Route Efficiency Score
-- Delay Frequency
-- Average Sales
-- Gross Profit
-- Units Shipped
-- Factory Performance
-- Regional Performance
+- Shipping Lead Time (median) and Average Lead Time (mean)
+- Route Volume (average shipments per route)
+- Delay Frequency (% shipments above a configurable lead-time threshold)
+- Route Efficiency Score (normalized, 0–100, higher is faster/better)
+- Total Shipments, Unique Orders, Avg Shipments per Order
 
 ---
 
 ## 📊 Dashboard Features
 
-### Executive Dashboard
+The dashboard (`app/app.py`) is organized into five tabs, plus a persistent KPI header and a synced filter panel (sidebar on desktop, expander on mobile) for date range, region/state, ship mode, and delay-threshold filtering.
 
-- Overall KPIs
-- Shipment Summary
-- Route Efficiency Score
-- Factory Performance
+### Route Overview
+- Route efficiency bar chart and volume-vs-lead-time scatter plot
+- Top 10 / Bottom 10 efficient routes leaderboard
+- Full route performance leaderboard table
 
-### Route Analytics
+### Geographic View
+- US choropleth map of state-level average lead time
+- Regional bottleneck bar chart
+- Bottleneck state detection (top 25% volume + top 25% lead time)
 
-- Route Leaderboard
-- Fastest Routes
-- Slowest Routes
-- Route Performance Comparison
+### Ship Mode Analysis
+- Lead time comparison across shipping modes
+- Delayed vs. on-time percentage by ship mode
+- Best/slowest mode summary cards
 
-### Geographic Analytics
+### Route Drill-Down
+- Per-route order timeline (on-time vs. delayed shipments)
+- Full order-level record table for the selected route
+- Analyst recommendation based on that route's performance vs. the overall average
 
-- Factory Locations
-- Customer Distribution
-- US Shipping Heatmap
-- Regional Bottlenecks
+### Trends
+- Monthly average lead time and order volume trends
+- Month-over-month movement summaries
+- Peak/lowest volume and lead-time months, with analyst recommendations
 
-### Ship Mode Analytics
-
-- Lead Time Comparison
-- Shipment Distribution
-- Cost vs Time Analysis
-
-### Factory Analytics
-
-- Factory Performance
-- Orders by Factory
-- Product Distribution
-
-### State Drill-down
-
-- State-wise Performance
-- Shipping Timeline
-- Order Details
+Insights and recommendations throughout the dashboard are generated dynamically from the currently filtered data, not hardcoded.
 
 ---
 
-## 📂 Proposed Project Structure
+## 📂 Actual Project Structure
 
 ```
-shipping-route-efficiency-analysis/
+nassau-candy-shipping-route-efficiency-analysis/
+│
+├── app/
+│   ├── app.py                          # Streamlit dashboard
+│   ├── powerbi_ready_dataset_builder.py
+│   ├── prepare_dashboard_files.py
+│   └── assets/
+│       ├── nassau_shippingrouteanalysis.css
+│       └── images/
 │
 ├── data/
-│   ├── raw/
-│   ├── processed/
-│   ├── external/
+│   ├── Nassau Candy Distributor.csv    # raw source data
+│   ├── *.csv                           # intermediate analysis exports
+│   ├── processed/                      # cleaned data consumed by app.py
+│   └── powerbi_ready/                  # exports for Power BI
 │
 ├── notebooks/
-│
-├── src/
-│   ├── preprocessing/
-│   ├── feature_engineering/
-│   ├── visualization/
-│   ├── analytics/
-│   ├── utils/
-│
-├── dashboard/
-│   ├── pages/
-│   ├── components/
-│   ├── assets/
+│   ├── 01_project_overview_and_data_loading.ipynb
+│   ├── 02_data_cleaning_and_validation.ipynb
+│   ├── 03_feature_engineering.ipynb
+│   ├── 04_route_definition_and_aggregation.ipynb
+│   ├── 05_efficiency_benchmarking.ipynb
+│   ├── 06_geographic_bottleneck_analysis.ipynb
+│   ├── 07_ship_mode_performance_analysis.ipynb
+│   ├── 08_key_insights_and_recommendations.ipynb
+│   └── 09_export_cleaned_data_for_streamlit.ipynb
 │
 ├── reports/
-│
-├── models/
-│
 ├── requirements.txt
-├── app.py
-├── README.md
-└── LICENSE
+├── Project Guidelines.txt
+└── README.md
 ```
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Programming
-
-- Python
-
-### Data Processing
-
-- Pandas
-- NumPy
-
-### Visualization
-
-- Plotly
-- Matplotlib
-- Folium
-
-### Dashboard
-
-- Streamlit
-
-### Geospatial Analytics
-
-- GeoPandas
-- Geopy
-
-### Machine Learning (Optional)
-
-- Scikit-learn
+- **Language:** Python
+- **Data Processing:** Pandas, NumPy
+- **Visualization:** Plotly (Express & Graph Objects)
+- **Dashboard:** Streamlit, with a custom CSS theme (`app/assets/nassau_shippingrouteanalysis.css`)
 
 ---
 
-## 📌 Expected Insights
+## ▶️ Running Locally
 
-The project aims to answer questions such as:
+```bash
+git clone https://github.com/Saswata-pal/shipping-route-efficiency-analysis.git
+cd shipping-route-efficiency-analysis
+pip install -r requirements.txt
+streamlit run app/app.py
+```
 
-- Which factory delivers products most efficiently?
-- Which customer regions experience the highest delays?
-- Which shipping mode provides the best performance?
-- Which routes require operational optimization?
-- How does shipment performance vary geographically?
+The app expects the processed CSVs in `data/processed/`; regenerate them from the raw dataset via the notebooks in `notebooks/` (or `app/prepare_dashboard_files.py`) if they're not already present.
+
+---
+
+## ☁️ Deployment
+
+Deployed via **Streamlit Community Cloud**, pointed at `app/app.py` as the main file. Pushing to the connected branch auto-redeploys.
+
+---
+
+## 📌 Key Insights Answered
+
+- Which factory-to-state routes are the fastest and slowest?
+- Which regions and states show the highest delay frequency?
+- Which shipping mode delivers most reliably, and which is used too often for its performance?
+- Which states are volume + lead-time bottlenecks that need operational review?
+- How has shipping performance trended month over month?
 
 ---
 
@@ -216,10 +208,9 @@ The project aims to answer questions such as:
 
 - Route delay prediction using Machine Learning
 - Route optimization recommendations
-- Interactive route maps
+- Interactive route maps with factory-to-customer paths
 - Automated report generation
-- Forecasting shipment demand
-- Cost optimization analysis
+- Cost vs. lead-time trade-off analysis
 - Real-time logistics monitoring
 
 ---
@@ -233,7 +224,7 @@ This project is intended for educational, research, and portfolio purposes.
 ## 👨‍💻 Author
 
 **Saswata Pal**
+Data Analyst Intern — Unified Mentor Pvt. Ltd.
+Mentor: Saiprasad Kagne
 
-*AI & Machine Learning Developer*
-
-**GitHub**: https://github.com/Saswata-pal
+**GitHub:** https://github.com/Saswata-pal
