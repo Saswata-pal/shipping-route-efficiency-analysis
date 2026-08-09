@@ -8,7 +8,7 @@ Built as part of a Data Analyst Internship with **Unified Mentor Pvt. Ltd.**
 
 ## 🔗 Live Demo
 
-**Dashboard:** [Add your Streamlit Cloud URL here]
+**Dashboard:** [Click here][https://shipping-route-efficiency-analysis-cww.streamlit.app/]
 
 **Repository:** https://github.com/Saswata-pal/shipping-route-efficiency-analysis
 
