@@ -224,7 +224,6 @@ This project is intended for educational, research, and portfolio purposes.
 ## 👨‍💻 Author
 
 **Saswata Pal**
-Data Analyst Intern — Unified Mentor Pvt. Ltd.
-Mentor: Saiprasad Kagne
+Machine Learning Intern — Unified Mentor Pvt. Ltd.
 
 **GitHub:** https://github.com/Saswata-pal
